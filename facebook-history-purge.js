@@ -9,19 +9,28 @@
 // @require    http://code.jquery.com/jquery-1.6.2.min.js
 // ==/UserScript==
 //
+// WARNING! THIS SCRIPT DELETES DATA UNRECOVERABLY. USE WITH CARE!
+//
 // Usage instructions:
 //
-// Double-click the "X" button in one of your posts to use. It will 
-// ask for your confirmation and then delete all posts older than the 
-// current post. You must yourself click the "Older Posts" link at the 
-// end of the wall to delete more, because this script will not delete 
-// posts which are not shown.
+// Double-click the "X" button in one of your posts to use. It will ask
+// for your confirmation and then delete all activity and posts older
+// than the current post. You must yourself click the "Older Posts" link
+// at the end of the wall to delete more, because this script will not
+// delete posts which are not shown.
 //
-// NOTE: This script was adapted from http://userscripts.org/scripts/show/92664
+// Note that even though this script removes the activies from your feed,
+// it does not delete the actual comments you made on other people's
+// posts. Also, this script cannot delete activities on posts which you
+// don't anymore have permission to see (if you check what your profile
+// looks like for someone who is still a friend of an unfriended person,
+// you will see the commenting activity, but will not be able to remove
+// it). A more sure way is to click the "X" next to one "commented on"
+// activity and select "hide all comment activity".
 
 (function($) {
     if ($('a.edit_profilepicture').size() == 0) { return; /* not on profile page */ }
-    
+
     var getSurroundingStory = function (element) {
         return $(element).closest('.storyContent');
     };
@@ -43,7 +52,7 @@
         console.log('delete story ', story);
         var closeButton = $(story).find('a.uiCloseButton').filter(':first');
         var params = getUrlParameters(closeButton.attr('ajaxify'));
-        
+
         // Bare minimum parameters for the request.
         // - DOM environment variables via Firebug
         $.ajax({
@@ -59,7 +68,7 @@
                 'fb_dtsg'               : unsafeWindow.Env.fb_dtsg
             }
         });
-        
+
         // colors to help with debugging
         //$(story).css('background-color', 'Red');
         //$(closeButton).parent().css('background-color', 'Orange');
@@ -77,7 +86,7 @@
         }
         return urlParams;
     };
-    
+
     $('#profile_minifeed').delegate('a.uiCloseButton', 'dblclick', function() {
         if (confirm("Delete this story and all that are older than it?")) {
             var story = getSurroundingStory(this);
