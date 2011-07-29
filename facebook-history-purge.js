@@ -84,6 +84,6 @@
             deleteStoriesOlderThan(story);
         }
     });
-    
-})(jQuery);
-jQuery.noConflict();
+
+})($);
+$.noConflict();
