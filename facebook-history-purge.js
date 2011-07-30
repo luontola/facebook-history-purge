@@ -6,7 +6,7 @@
 // @include    http://*.facebook.com/*
 // @include    https://*.facebook.com/*
 // @copyright  2011, Esko Luontola
-// @require    http://code.jquery.com/jquery-1.6.2.min.js
+// @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js
 // ==/UserScript==
 //
 // WARNING! THIS SCRIPT DELETES DATA UNRECOVERABLY. USE WITH CARE!
@@ -28,7 +28,8 @@
 // it). A more sure way is to click the "X" next to one "commented on"
 // activity and select "hide all comment activity".
 
-(function($) {
+jQuery.noConflict();
+jQuery(document).ready(function($) {
     if ($('a.edit_profilepicture').size() == 0) { return; /* not on profile page */ }
 
     var getSurroundingStory = function (element) {
@@ -93,5 +94,4 @@
             deleteStoriesOlderThan(story);
         }
     });
-
-})($);
+});
