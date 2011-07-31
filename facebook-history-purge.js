@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Facebook History Purge
 // @namespace  http://github.com/orfjackal/facebook-history-purge
-// @version    1.0.2
+// @version    1.0.3
 // @description  Deletes from your Facebook wall all stories older than the selected post.
 // @include    http://*.facebook.com/*
 // @include    https://*.facebook.com/*
