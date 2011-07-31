@@ -27,6 +27,15 @@
 // you will see the commenting activity, but will not be able to remove
 // it). A more sure way is to click the "X" next to one "commented on"
 // activity and select "hide all comment activity".
+//
+// KNOWN ISSUES:
+//
+// At least with Chrome 12.0.742.122 and Tampermonkey 2.0.2395 there is a
+// problem that when the browser is started, this script does not work,
+// but after going to Tampermonkey settings to edit this plugin and then
+// saving it (without changing anything), then it works after reloading
+// the page. I've got no idea what is the reason - user scripts are a new
+// thing to me and I haven't been able to find good documentation.
 
 jQuery.noConflict();
 jQuery(document).ready(function($) {
